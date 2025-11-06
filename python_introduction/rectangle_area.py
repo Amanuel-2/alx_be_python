@@ -1,5 +1,5 @@
 length = 10
 width = 5
-Area = length * width
+area = length * width
 
-print("The area of the reactangle is:",Area)
+print("The area of the reactangle is:",area)
