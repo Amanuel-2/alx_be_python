@@ -1,32 +1,34 @@
-task = input("Enter your task: ").strip()
-while not task:
-    print("Task cannot be empty.")
-    task = input("Enter your task: ").strip()
+# daily_reminder.py
 
+# Prompt user for task details
+task = input("Enter your task: ")
 priority = input("Priority (high/medium/low): ").lower()
+time_bound = input("Is it time-bound? (yes/no): ").lower()
+
+# Loop to ensure valid priority input
 while priority not in ["high", "medium", "low"]:
     print("Invalid priority. Please enter high, medium, or low.")
     priority = input("Priority (high/medium/low): ").lower()
 
-time_bound = input("Is it time-bound? (yes/no): ").lower()
-while time_bound not in ["yes", "no"]:
-    print("Please answer yes or no.")
-    time_bound = input("Is it time-bound? (yes/no): ").lower()
-
+# Match Case for priority handling
 match priority:
     case "high":
-        reminder = f"'{task}' is a high priority task"
+        reminder = f"Reminder: '{task}' is a high priority task"
     case "medium":
-        reminder = f"'{task}' is a medium priority task"
+        reminder = f"Reminder: '{task}' is a medium priority task"
     case "low":
-        reminder = f"'{task}' is a low priority task"
+        reminder = f"Note: '{task}' is a low priority task"
     case _:
-        reminder = f"'{task}' is a task"
+        reminder = f"'{task}' has an undefined priority."
 
+# Check if task is time-bound
 if time_bound == "yes":
     reminder += " that requires immediate attention today!"
 else:
-    reminder += ". This task is not time-bound, so complete it when appropriate."
+    if priority == "low":
+        reminder += ". Consider completing it when you have free time."
+    else:
+        reminder += "."
 
-
-print("\nReminder:", reminder)
+# Print final customized reminder
+print(reminder)
