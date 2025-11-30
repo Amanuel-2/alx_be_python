@@ -1,17 +1,22 @@
+# bank_account.py
+
 class BankAccount:
     def __init__(self, initial_balance=0):
-        self.__account_balance = initial_balance
+        # Encapsulated balance
+        self._account_balance = initial_balance
 
     def deposit(self, amount):
+        """Add amount to balance."""
         if amount > 0:
-            self.__account_balance += amount
+            self._account_balance += amount
 
     def withdraw(self, amount):
-        if amount <= self.__account_balance:
-            self.__account_balance -= amount
+        """Subtract amount if sufficient funds. Return True if successful, else False."""
+        if 0 < amount <= self._account_balance:
+            self._account_balance -= amount
             return True
-        else:
-            return False
+        return False
 
     def display_balance(self):
-        return f"Current Balance: ${self.__account_balance}"
+        """Print the current balance formatted to two decimal places."""
+        print(f"Current Balance: ${self._account_balance:.2f}")
